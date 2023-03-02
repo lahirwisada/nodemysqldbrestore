@@ -11,9 +11,6 @@ let dbUser = 'root';
 let dbPass = '';
 let dbName = 'database_name';
 
-// Define progress bar
-const progressBar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
-
 // Create readline interface for prompting user
 const rl = readline.createInterface({
   input: process.stdin,
@@ -46,7 +43,7 @@ rl.question('Enter database port (default 3306): ', (port) => {
 
         const filePath = execSync(`powershell.exe -Command "& { Add-Type -AssemblyName System.Windows.Forms; $dialog = New-Object System.Windows.Forms.OpenFileDialog; $dialog.InitialDirectory = '${__dirname}'; $dialog.Filter = 'SQL Files (*.sql)|*.sql|All Files (*.*)|*.*'; $dialog.ShowDialog() | Out-Null; $dialog.FileName }"`, { encoding: 'utf-8' }).trim();
         if(filePath){
-
+          console.log(`Restoring ${filePath} into ${dbName}`);
           const spinner = new Spinner('Restoring database... %s');
           spinner.start();
 
@@ -79,6 +76,7 @@ rl.question('Enter database port (default 3306): ', (port) => {
 
           rl.close();
         }else{
+          console.error('No file selected!!!')
           rl.close();
           return;
         }
