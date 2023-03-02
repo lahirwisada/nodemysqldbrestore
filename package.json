@@ -27,7 +27,6 @@
   "homepage": "https://github.com/lahirwisada/nodemysqldbrestore#readme",
   "dependencies": {
     "child_process": "^1.0.2",
-    "cli-progress": "^3.12.0",
     "cli-spinner": "^0.2.10",
     "electron": "^23.1.1",
     "electron-squirrel-startup": "^1.0.0",
